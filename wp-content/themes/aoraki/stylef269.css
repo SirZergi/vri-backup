@@ -1,0 +1,58 @@
+/*
+Theme Name: Aoraki
+Theme URI: https://wydethemes.com/aoraki
+Description: Multi-Concept Business WordPress theme 
+Author: Wyde
+Author URI: https://themeforest.net/user/Wyde
+Version: 1.0.1
+Tags: theme-options, full-width-template, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu
+Text Domain: aoraki
+License: ThemeForest Licenses
+License URI: https://themeforest.net/licenses/standard
+*/
+body {
+	width:100%;
+	max-width:100%;
+	overflow-x: hidden;
+}
+.language {
+	position:relative;
+	float:right;
+	right:-120px;
+	display:inline-block;
+	padding-right:0px !important;
+	padding-left:0px !important;
+}
+.vertical-menu .language {
+	right:0px !important;
+	top: 90px;
+}
+.language a {
+	float:left;
+	display:inline-block;
+	padding:0px !important;
+}
+.language-first:after {
+	display:inline-block;
+	 content: " | ";
+	padding: 0 10px 0 10px;
+}
+.cc-opt {
+	padding-right: 0.8em;
+	border-left: 1px solid #ccc;
+}
+.language.menu-item-home a {
+	color: #004070 !important;
+}
+@media screen and (max-width: 767px) {
+	.cc-btn { 
+		width: 50%;
+		min-width: 160px;
+		font-size: 66% !important;
+	}
+}
+@media screen and (min-width: 900px) {
+	.cc-opt {
+	padding-right: 70px !important;
+	}
+}

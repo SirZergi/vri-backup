@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Production log &#8211; VR-Interactive</title>
+	<atom:link href="https://vr-interactive.at/blog/category/production-log/feed/" rel="self" type="application/rss+xml" />
+	<link>https://vr-interactive.at</link>
+	<description>we are interactive</description>
+	<lastBuildDate>Wed, 10 Oct 2018 09:13:01 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.21</generator>
+
+<image>
+	<url>https://vr-interactive.at/wp-content/uploads/2017/06/Icon_256-150x150.png</url>
+	<title>Production log &#8211; VR-Interactive</title>
+	<link>https://vr-interactive.at</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Jumpy Zergi Feature Highlight</title>
+		<link>https://vr-interactive.at/blog/2018/10/10/jumpy-zergi-feature-highlight/</link>
+				<comments>https://vr-interactive.at/blog/2018/10/10/jumpy-zergi-feature-highlight/#respond</comments>
+				<pubDate>Wed, 10 Oct 2018 09:13:01 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+				<category><![CDATA[Production log]]></category>
+
+		<guid isPermaLink="false">https://vr-interactive.at/?p=1516</guid>
+				<description><![CDATA[Jumpy Zergi production Log #3 It has been a while since the last post, but rest assured, the Zergi is still jumping. This time I&#8217;m going to show you some of the features we have been working on: color animations, audio controlled animations and the now completed practice mode. &#160; Color animations We created effects [&#8230;]]]></description>
+								<content:encoded><![CDATA[<h5>Jumpy Zergi production Log #3</h5>
+<p>It has been a while since the last post, but rest assured, the Zergi is still jumping. This time I&#8217;m going to show you some of the features we have been working on: color animations, audio controlled animations and the now completed practice mode.</p>
+<p>&nbsp;</p>
+<p><strong>Color animations</strong></p>
+<p>We created effects that allow us to fade colors of blocks and the background between different sections of the levels. Rather than blending the Color as a whole using Color.Lerp(), we built our own function which can blend hue, saturation and value independently from each other. The reason for this was, that we needed to control the colors value or brightness to create flashing effects (for example to the beat of the music), but needed to change the hue between major sections of the level and the saturation for the block color. We also added a shock-wave effect with a little bit of camera shake on top, for dramatic effect of course.</p>
+<p><img class="aligncenter size-full wp-image-1520" src="https://vr-interactive.at/wp-content/uploads/2018/10/JZ_ColorChange.gif" alt="" width="380" height="219" /></p>
+<p>The main challenge was interpolating between different hue values. While saturation and brightness behave linearly, hue does not. This means that blending from pink to orange in a linear way would cycle through purple, blue, teal, green and yellow before finally getting to orange.</p>
+<p><img class="aligncenter size-full wp-image-1539" src="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_Hue.jpg" alt="" width="707" height="80" srcset="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_Hue.jpg 707w, https://vr-interactive.at/wp-content/uploads/2018/10/BP4_Hue-300x34.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/10/BP4_Hue-640x72.jpg 640w" sizes="(max-width: 707px) 100vw, 707px" /></p>
+<p>The first solution offsets the target hue value by 100%, whenever the difference is greater than +/- 50%, which means interpolating happens along the shortest route. In our previous example, this means we will now fade from pink to red to orange.</p>
+<p><img class="wp-image-1531 size-full aligncenter" src="https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_1.jpg" alt="" width="707" height="162" srcset="https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_1.jpg 707w, https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_1-300x69.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_1-640x147.jpg 640w" sizes="(max-width: 707px) 100vw, 707px" /></p>
+<p>The second solution lowers the saturation, depending on the hue difference of the current and target color as well as interpolation time. This stops &#8220;in-between&#8221; hues from flashing while animating, creating a more natural interpolation effect.</p>
+<p><img class="size-full wp-image-1532 aligncenter" src="https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_2.jpg" alt="" width="707" height="291" srcset="https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_2.jpg 707w, https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_2-300x123.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/10/ColorAni_2-640x263.jpg 640w" sizes="(max-width: 707px) 100vw, 707px" /></p>
+<p>&nbsp;</p>
+<p><strong>Audio controlled animations</strong></p>
+<p>To better merge visuals and music, some level elements are influenced by different frequency sections of the audio track. An example of this is most commonly seen in media player apps, in the form of a bar diagram. We currently use it to animate the size of some of our 2d elements like decorations and triggers.</p>
+<p><img class="aligncenter size-full wp-image-1543" src="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Audio.gif" alt="" width="785" height="212" /></p>
+<p>While we could simply sample the loudness of each frame, we decided to break the samples down into several frequency sections, which can then each be used in the game individually. This gives us the opportunity to sample higher tunes or low bass only and generally use the section which looks the best. There are two things we needed to keep in mind. The first is that lower frequencies are much higher in amplitude (or strength) than higher frequencies. This reduction in &#8220;power&#8221; follows a logarithmic curve, when it comes to the human perception of audio frequencies. For our purpose, this means that in order to get equally meaningful frequency sections of the track, the selection needs to be wider, the higher its containing frequencies are. The selection of frequencies is then averaged, which creates a numeric (float) value for 8 different frequency sections of the track. The second thing to keep in mind, is that the audio sources volume influences that value as well, so we need to multiply it by a factor of 1/volume (and prevent division by 0 while doing that).</p>
+<p>If you would like to know more, <a href="https://www.youtube.com/watch?v=4Av788P9stk">here</a> is a great series of videos, which goes further into detail about audio frequencies and how to use them in Unity3D.</p>
+<p>&nbsp;</p>
+<p><strong>Practice Mode</strong></p>
+<p>Since the game is quite difficult by design, practicing the level by doing it over and over again from the start can get quite tedious and frustrating. The practice mode is designed to remedy that, giving players the ability to use checkpoints where they will respawn after dying. Checkpoints can be set automatically or manually by a button or hotkey. Checkpoints can also be removed, so the previous checkpoint becomes active again.</p>
+<p><img class="aligncenter size-full wp-image-1553" src="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Practice.gif" alt="" width="680" height="306" /></p>
+<p>For us, this meant that all the different variables needed to be saved and restored in each individual checkpoint object. Some examples are player position and speed, gravity and the different color animation states. Another important goal for us was, to not use generic practice music, but instead to keep the original level soundtrack running, even in practice mode. In order to sync the music perfectly to the level after every checkpoint, we saved and set the audio clips sample count for every checkpoint.</p>
+<p><img class="aligncenter size-full wp-image-1554" src="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Checkpoint.jpg" alt="" width="600" height="293" srcset="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Checkpoint.jpg 600w, https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Checkpoint-300x147.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></p>
+<p>Practice mode has its own individual progress. In order to complete a level, the player has to beat it in normal mode, without checkpoints.</p>
+<p>&nbsp;</p>
+<p>Last but not least, if you are into Crypto currencies, we have inside information about the next rising star among them: Zergi Coins! They can be used to buy your favorite Zergi different outfits and are accepted in all Jumpy Zergi approved shops.</p>
+<figure id="attachment_1545" aria-describedby="caption-attachment-1545" style="width: 1024px" class="wp-caption aligncenter"><img class="wp-image-1545 size-full" src="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Coin.jpg" alt="" width="1024" height="233" srcset="https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Coin.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Coin-300x68.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Coin-768x175.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/10/BP4_JZ_Coin-640x146.jpg 640w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption id="caption-attachment-1545" class="wp-caption-text">Zergi Coin!</figcaption></figure>
+<p>This is all for now! The next post will show off some of the games user interface graphics, as well as our new game controller &amp; keyboard detection and support features.</p>
+]]></content:encoded>
+							<wfw:commentRss>https://vr-interactive.at/blog/2018/10/10/jumpy-zergi-feature-highlight/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>The process of designing a level</title>
+		<link>https://vr-interactive.at/blog/2018/05/21/the-process-of-designing-a-level/</link>
+				<comments>https://vr-interactive.at/blog/2018/05/21/the-process-of-designing-a-level/#respond</comments>
+				<pubDate>Mon, 21 May 2018 17:31:58 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+				<category><![CDATA[Production log]]></category>
+
+		<guid isPermaLink="false">https://vr-interactive.at/?p=1299</guid>
+				<description><![CDATA[Jumpy Zergi production Log #2 In our second Jumpy Zergi post, we will talk about the level design process of the game. As we mentioned in our previous Blog Post, Jumpy Zergi is a challenging auto-scrolling 2.5D platformer, in which both the level and inputs from the player are synced to the soundtrack. We will [&#8230;]]]></description>
+								<content:encoded><![CDATA[<h5>Jumpy Zergi production Log #2</h5>
+<p>In our second Jumpy Zergi post, we will talk about the level design process of the game. As we mentioned in our previous <a href="https://vr-interactive.at/index.php/2018/04/07/jumpy_zergi_1/">Blog Post</a>, Jumpy Zergi is a challenging auto-scrolling 2.5D platformer, in which both the level and inputs from the player are synced to the soundtrack. We will focus on the challenges and difficulties we had to face while in the creation process and in which ways we overcame them.</p>
+<p>From the very start of development, it became clear that building a level, that syncs up well with music, is a lot more challenging than first anticipated. We also noticed very early on, that the level would feel too repetitive, without some changes in gameplay. This is why we implemented different speed modifiers and gravity switches, although these features were at first not intended. The first two out of nine sections were built quite early in the game so we could test and balance all the different features. After all the gameplay features have been completed, we continued with the design of the level layout under the following guidelines:</p>
+<ul>
+<li>Interactions and environment should sync up well with the soundtrack</li>
+<li>Balanced difficulty</li>
+<li>Avoid repetition</li>
+<li>Prevent the feeling of unfairness</li>
+<li>Optional alternate and more difficult paths for collectibles</li>
+</ul>
+<p><strong>Syncing to soundtrack</strong></p>
+<p>Syncing the level to the soundtrack was the first priority when creating it, as this is the most important factor for whether playing the game would be satisfying. When we first started to build a new section, we only used the absolute minimum amount of blocks or platforms on key positions, until we got the syncing right. Only then came balance and design. Even though there is only one input, jump, there are actually more things the level can sync to: jumping, landing, triggers and passing of obstacles or passages at the right time, which is either a distinctive note or beat. We placed small editor guide objects for each of those key moments via a script, tapping along to the music, while the script takes care of positioning the guides.</p>
+<figure id="attachment_1336" aria-describedby="caption-attachment-1336" style="width: 1920px" class="wp-caption aligncenter"><img class="wp-image-1336 size-full" src="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides.jpg" alt="" width="1920" height="210" srcset="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides.jpg 1920w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides-300x33.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides-768x84.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides-1024x112.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides-640x70.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Guides-1280x140.jpg 1280w" sizes="(max-width: 1920px) 100vw, 1920px" /><figcaption id="caption-attachment-1336" class="wp-caption-text">Semi-automatically placed guides</figcaption></figure>
+<p>Also to be considered were the different distances when either jumping or falling, at all the different speeds we have in the level. We kept everything in grid units, which not only makes building the level less complicated, it also looks more appealing and less chaotic that way.</p>
+<figure id="attachment_1340" aria-describedby="caption-attachment-1340" style="width: 1920px" class="wp-caption aligncenter"><img class="wp-image-1340 size-full" src="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances.jpg" alt="" width="1920" height="336" srcset="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances.jpg 1920w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances-300x53.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances-768x134.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances-1024x179.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances-640x112.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_distances-1280x224.jpg 1280w" sizes="(max-width: 1920px) 100vw, 1920px" /><figcaption id="caption-attachment-1340" class="wp-caption-text">Jump and fall distances at different speed settings</figcaption></figure>
+<p><strong>Ballance</strong></p>
+<p>Most sections were a bit too hard when they were first created and later sections were quite a bit harder than earlier ones as well. It was somewhat intended to have an easier start and end with more difficulty in between, but it drifted apart too much. This became especially apparent, when we had our first external testers have a go at the Jumpy Zergi level.</p>
+<p>We also made sure, that there are several &#8220;break&#8221;-parts in the level, were no input is required for a short time. Another important design philosophy was that the level needs to be readable. This means that the elements ahead should be visible before the player needs to act and not pop into view right before the player needs to react to them.</p>
+<figure id="attachment_1342" aria-describedby="caption-attachment-1342" style="width: 1920px" class="wp-caption aligncenter"><img class="size-full wp-image-1342" src="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break.jpg" alt="" width="1920" height="580" srcset="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break.jpg 1920w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break-300x91.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break-768x232.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break-1024x309.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break-640x193.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_break-1280x387.jpg 1280w" sizes="(max-width: 1920px) 100vw, 1920px" /><figcaption id="caption-attachment-1342" class="wp-caption-text">Example of a break section</figcaption></figure>
+<p>Additionally, we also prevent too narrow timings (precise inputs at exactly the right time) and platforms that are too easy to miss. Instead we increase difficulty by the amount of inputs and the speed of movement.</p>
+<p><strong>Avoiding repetition</strong></p>
+<p>To keep the level more interesting, each section has been designed with a certain style, one section might consist of floating platforms, another of pillars. As I mentioned earlier, this wasn&#8217;t quite enough so we introduced up-side-down gravity and three different speed settings, which are triggered at the start of sections. Additionally, there are also visual effect triggers which can change the color of the glowing outline or the blocks themselves.</p>
+<figure id="attachment_1343" aria-describedby="caption-attachment-1343" style="width: 1920px" class="wp-caption aligncenter"><img class="wp-image-1343 size-full" src="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section.jpg" alt="" width="1920" height="800" srcset="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section.jpg 1920w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section-300x125.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section-768x320.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section-1024x427.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section-640x267.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_section-1280x533.jpg 1280w" sizes="(max-width: 1920px) 100vw, 1920px" /><figcaption id="caption-attachment-1343" class="wp-caption-text">Example of how a section might look completely different in both block layout and color &#8211; still work in progress</figcaption></figure>
+<p><strong>Prevent feeling of unfairness</strong></p>
+<p>The thing about fairness in games is, things that are exactly as they look like generally feel unfair. Failure or deaths would often seem without reason, which can lead to frustration. This is why in many games, as well as in Jumpy Zergi, there are several things in place to help the player out a little.</p>
+<p>The most major adjustments are colliders and hitboxes. Zergi&#8217;s collider is actually a bit wider than the visual model, which allows the player to land on platforms easier, if he jumped too early. In contrary, the triggers which check for collisions with things that would kill the player are actually smaller than what they appear to be, which causes very slight spike touches to simply not register.</p>
+<figure id="attachment_1345" aria-describedby="caption-attachment-1345" style="width: 1380px" class="wp-caption aligncenter"><img class="size-full wp-image-1345" src="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger.jpg" alt="" width="1380" height="300" srcset="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger.jpg 1380w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger-300x65.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger-768x167.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger-1024x223.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger-640x139.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_Trigger-1280x278.jpg 1280w" sizes="(max-width: 1380px) 100vw, 1380px" /><figcaption id="caption-attachment-1345" class="wp-caption-text">left &#8211; character collider / middle &#8211; trigger for block collision / right &#8211; trigger for spike collision / far right &#8211; spike model size vs trigger size</figcaption></figure>
+<p>Another feature is an early jump timer. Every time a player jumps when still in the air, a small timer keeps querying the grounded state for a few tenths of a second. Should the character land on the floor or on a block in that time, a jump input will occur automatically. This type of feature can be found in almost any game that has jumping in it, without anyone noticing. People will notice if it is missing though, followed by the familiar thought &#8220;I definitely jumped, why didn&#8217;t the character jump?&#8221;.</p>
+<p>The same feature but for jumping late is also implemented in many different games. Instead of using one raycaster¹ to detect the grounded status, there are two with one at the front and one at the back of the character. This allows for late jumps to still register and prevents the same frustrations as with jumping too early. Also note, while the Zergi character rotates when jumping, this does actually only effect the visual model. All the game components only move with the controls, but not with the characters animations.</p>
+<p><em>¹ a raycaster sends or casts a ray in a direction (in our case down) until it hits a collider, at which point it returns several data about the collision like name and hit coordinates.</em></p>
+<p><strong>Collectibles</strong></p>
+<p>To give the level a little more replayability and make the game more interesting, alternative and harder routes which are sometimes hidden, have been built into certain spots in the level. These paths will contain collectibles (probably coins), which have not yet been implemented. Since they are only a secondary feature, they were mostly added to a section later, when the section was already completed.</p>
+<figure id="attachment_1350" aria-describedby="caption-attachment-1350" style="width: 1920px" class="wp-caption aligncenter"><img class="wp-image-1350 size-full" src="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible.jpg" alt="" width="1920" height="820" srcset="https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible.jpg 1920w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible-300x128.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible-768x328.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible-1024x437.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible-640x273.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/05/JZ_Blog2_collectible-1280x547.jpg 1280w" sizes="(max-width: 1920px) 100vw, 1920px" /><figcaption id="caption-attachment-1350" class="wp-caption-text">Standard and alternative route, which will contain a collectible</figcaption></figure>
+<h5><strong>Short update on current progress:</strong></h5>
+<p>The level design for the first level is now completed, as well as the testing and balancing of it. A bunch of new features have been implemented, like block animations, color animations, audio controls and some UI options. Next will be the finalization of major features, a proper menu and the practice mode. It also became clear, that we will need a more beginner friendly second level, which will then become the first.</p>
+<p>As always, keep an eye on the next Jumpy Zergi post, where we will show you some features of our game and how we created them.</p>
+]]></content:encoded>
+							<wfw:commentRss>https://vr-interactive.at/blog/2018/05/21/the-process-of-designing-a-level/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>New game in the making</title>
+		<link>https://vr-interactive.at/blog/2018/04/07/jumpy_zergi_1/</link>
+				<comments>https://vr-interactive.at/blog/2018/04/07/jumpy_zergi_1/#respond</comments>
+				<pubDate>Sat, 07 Apr 2018 22:44:23 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+				<category><![CDATA[Production log]]></category>
+
+		<guid isPermaLink="false">https://vr-interactive.at/?p=1139</guid>
+				<description><![CDATA[Jumpy Zergi production Log #1 A project which started off on an uneventful weekend is now being developed whenever there is some free time. Jumpy Zergi is a free little game, with the character based on Carbot Animations version of a Zergling, or as we like to call it, Zergi. The game is a 2D [&#8230;]]]></description>
+								<content:encoded><![CDATA[<h5 style="text-align: left;">Jumpy Zergi production Log #1</h5>
+<p>A project which started off on an uneventful weekend is now being developed whenever there is some free time. Jumpy Zergi is a free little game, with the character based on <a href="https://www.youtube.com/playlist?list=PL0QrZvg7QIgpoLdNFnEePRrU-YJfr9Be7">Carbot Animations</a> version of a Zergling, or as we like to call it, Zergi. The game is a 2D platformer with 3D graphics (or a 2.5d game), in which movement is automatic and the only input is jumping. The game is synchronized with the music and requires precise input timings to complete the level. Jumps need to be timed correctly to avoid spikes and land on platforms. The game is inspired by titles like <em>The Impossible Game</em> and <em>Geometry Dash</em>.</p>
+<h6>Currently planned game features:</h6>
+<ul>
+<li>Simple and precise controls</li>
+<li>Catchy music and an environment that goes along with the beat</li>
+<li>Simple but shiny and dynamic 3D graphics and 2D level design</li>
+<li>Hard and challenging</li>
+<li>Spikes, cubes, platforms, speed and gravity switches</li>
+<li>Be a Zergi!</li>
+</ul>
+<p>It was clear in the beginning, that the game should be simple in both gameplay and graphics, in order to release a polished product in free time only. The creation of a well polished game with minimalistic content, which can be added onto later is the final goal of this project. A 2D platformer with only one input seemed like a good idea. As usual, the project turned out to be more work than first anticipated, partly due to always wanting to improve the game.</p>
+<h6>The main objectives for Jumpy Zergi are:</h6>
+<ul>
+<li>Simple enough to be created casually, but with professional polishing</li>
+<li>Simple but challenging gameplay, without being unfair</li>
+<li>Playing a level must feel natural, no clunky controls, every necessary input should go well with the music</li>
+<li>The entire level should be dynamic and go with the music as well</li>
+</ul>
+<p>A lot of the time goes into prototyping, testing and tweaking, as well as building the level. The actual asset creation goes by rather quickly. Everything was designed around a grid, to make gameplay consistent and level design more streamlined. Once the objectives were defined, I immediately started prototyping, by implementing features in a very basic form first and with very quickly created graphic elements. The 3D model of the Zergi and its rig already existed from previous projects, however it was not animated yet.</p>
+<figure id="attachment_1157" aria-describedby="caption-attachment-1157" style="width: 800px" class="wp-caption alignnone"><img class="wp-image-1157" src="https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype-300x145.jpg" alt="" width="800" height="386" srcset="https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype-300x145.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype-768x371.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype-1024x494.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype-640x309.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype-1280x618.jpg 1280w, https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_prototype.jpg 1430w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption id="caption-attachment-1157" class="wp-caption-text">Jumpy Zergi very early prototype</figcaption></figure>
+<p>The game continued to look likes this for quite some time. At this point, a lot of work went into improving and tweaking the controls, adjusting hit boxes and character grounding registration. For example, the character should be able to reach a block or platform which is 2 units higher than its current position, but should not be able to hit something which is 3 units higher. The jumping mechanic is also a bit more generous by letting you jump when more than half of the character is already over the edge and in the air.</p>
+<p>Apart from jumping over obstacles or on platforms, the game also features gravity and speed changing objects. Once they are activated, the player has to control his Zergi upside down or at a different speed than before. Those features have not been initially planned however. The level is going to be approximately 1 minute and 30 seconds long. When level blocking was in progress, it became apparent that simply jumping along for that time became monotone. With the addition of changing the speed or the down-axis the game becomes more interesting and also more challenging, without breaking the one input rule.</p>
+<h6>Progress so far:</h6>
+<p>Most of the game mechanics and elements like blocks and spikes of varying sizes, as well as the character itself are already finished. Game elements animate in and out of the scene and have a glow shader attached to them, which will later be animated. The reflection is entirely faked by using a transparent gradient and duplicated assets which are negatively scaled and placed on the opposite on the vertical axis. Speed an gravity triggers already work and have their position in the level defined. About 30% of the level has been built, while the rest of it has been blocked out with markers, to make syncing with the soundtrack easier.</p>
+<figure id="attachment_1167" aria-describedby="caption-attachment-1167" style="width: 600px" class="wp-caption alignnone"><img class="wp-image-1167" src="https://vr-interactive.at/wp-content/uploads/2018/04/JumpyZergi_gameplay.gif" alt="" width="600" height="336" /><figcaption id="caption-attachment-1167" class="wp-caption-text">Early gameplay snapshot</figcaption></figure>
+<figure id="attachment_1173" aria-describedby="caption-attachment-1173" style="width: 1024px" class="wp-caption alignnone"><a href="https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks.jpg"><img class="wp-image-1173 size-large" src="https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks-1024x479.jpg" alt="" width="1024" height="479" srcset="https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks-1024x479.jpg 1024w, https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks-300x140.jpg 300w, https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks-768x359.jpg 768w, https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks-640x299.jpg 640w, https://vr-interactive.at/wp-content/uploads/2018/04/Blog_JumpyZergi_blocks-1280x599.jpg 1280w" sizes="(max-width: 1024px) 100vw, 1024px" /></a><figcaption id="caption-attachment-1173" class="wp-caption-text">Current game elements</figcaption></figure>
+<h6>What&#8217;s next:</h6>
+<p>Currently, the level is being built, which involves more testing and tweaking than actual building. When the level is finished and balanced properly we will then take on additional decorations, animations and polishing for the main level. Most of the user interface is also still missing, as well as the main menu. A practice mode will also be added, which will allow the player to place checkpoints on the map to learn the level before trying it in one go. If there is enough time, collectibles and achievements may also be implemented into the game. Depending on feedback, the game might be updated with a second level in the future.</p>
+<p>Keep an eye on the next Jumpy Zergi production log, which will focus on level design and how we balance the level to keep it interesting and challenging.</p>
+]]></content:encoded>
+							<wfw:commentRss>https://vr-interactive.at/blog/2018/04/07/jumpy_zergi_1/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

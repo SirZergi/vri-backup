@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>WebGL &#8211; VR-Interactive</title>
+	<atom:link href="https://vr-interactive.at/portfolio-category/webgl/feed/" rel="self" type="application/rss+xml" />
+	<link>https://vr-interactive.at</link>
+	<description>we are interactive</description>
+	<lastBuildDate>Fri, 15 Sep 2023 21:23:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.21</generator>
+
+<image>
+	<url>https://vr-interactive.at/wp-content/uploads/2017/06/Icon_256-150x150.png</url>
+	<title>WebGL &#8211; VR-Interactive</title>
+	<link>https://vr-interactive.at</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Aristoteles SKY</title>
+		<link>https://vr-interactive.at/portfolio-item/aristoteles-sky/</link>
+				<pubDate>Tue, 11 Feb 2020 16:18:27 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=1897</guid>
+				<description><![CDATA[After ARISTOTELES, ZULU and IRIS, ARISTOTELES SKY is the fourth of Kaiserwetters products to receive a new key visual graphic and interactive WebGL application. Aristoteles Sky is a real-time production data enriched energy cloud platform for nations. It is designed to mitigate energy transition risks and to improve accuracy for planning of new capacities like [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>After <a href="https://vr-interactive.at/portfolio-item/aristoteles-key-visual-webgl/">ARISTOTELES</a>, <a href="https://vr-interactive.at/portfolio-item/zulu-key-visual/">ZULU</a> and <a href="https://vr-interactive.at/portfolio-item/iris-key-visual/">IRIS</a>, ARISTOTELES SKY is the fourth of Kaiserwetters products to receive a new key visual graphic and interactive WebGL application. Aristoteles Sky is a real-time production data enriched energy cloud platform for nations. It is designed to mitigate energy transition risks and to improve accuracy for planning of new capacities like renewable energy generation, storage or grid expansion.</p>
+<p>As with the other key visual designs, Aristoteles Sky also needed to be visualized in the same diorama art style. The main challenge for this project in particular was the correct presentation of scale on a heavily stylized visualization. The floating island should be recognized as a large country or continent instead of featuring a small area like in the Iris and Zulu projects. We achieved that large-scale feeling by a number of processes. Aside from a higher-fidelity mesh, the entire environment is slightly rounded to represent the earths curvature. The cameras field of view has also been increased and a slight fog effect has been applied to simulate atmospheric refraction. Details like the two cities and towns play into the illustrations diorama style and also represent the huge scale of the environment more directly.</p>
+<p>As usual, we had to keep performance and data size in mind for the WebGL portion of this project. Parts of the 3D model which are not visible in the app have been deleted in order to reduce file size. Additionally, some geometry was duplicated and placed by script rather than imported as a whole mesh. Shadows, ambient lighting and ambient occlusion have all been baked into a texture and applied onto the models tightly wrapped UV layout. For the latter, finding the right balance between quality and file size is especially important.</p>
+<p>The WebGL app features control variables to change position, size and animation speed to allow quick and easy customization for web deployment. We also implemented a new style of particle effect and made use of our mouse and tilt interactivity feature. The entire WebGL project requires just 1300KB and works on all WebGL supported devices.</p>
+<p>You can see the app live at:<a href="https://www.kaiserwetter.energy/en/products/aristoteles-sky/"> kaiserwetter.energy/en/products/aristoteles-sky/</a></p>
+<p><strong>Client:</strong> <a href="https://kaiserwetter.energy//">Kaiserwetter Energy Asset Management</a><br />
+<strong>Agency:</strong> <a href="https://apollo7.rocks/">Apollo7</a></p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>IRIS key visual</title>
+		<link>https://vr-interactive.at/portfolio-item/iris-key-visual/</link>
+				<pubDate>Tue, 18 Jun 2019 15:45:47 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=1784</guid>
+				<description><![CDATA[Another new service by Kaiserwetter, the smart data analytics machine IRIS, launched this June. Just like its other brands Aristoteles and ZULU, IRIS also got a new key visual graphic, along with an interactive WebGL version. This time, Apollo7 provided us with the initial concept. After adding our own ideas to the design, our job [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Another new service by Kaiserwetter, the <em>smart data analytics machine IRIS</em>, launched this June. Just like its other brands <a href="https://vr-interactive.at/portfolio-item/aristoteles-key-visual-webgl/">Aristoteles</a> and <a href="https://vr-interactive.at/portfolio-item/zulu-key-visual/">ZULU</a>, IRIS also got a new key visual graphic, along with an interactive WebGL version. This time, Apollo7 provided us with the initial concept. After adding our own ideas to the design, our job was to translate that design into a 3d scene for rendering and web.</p>
+<p>Most of the time, memory optimization is the most difficult part when it comes to developing WebGL applications, as the entire scene and the components needed to run it must be downloaded by the user when visiting the page. The application needed to be small enough for fast downloading, while also staying close to the rendered versions visual quality. This was especially challenging for IRIS, as the scene was on a larger scale and had a lot of objects in the scene. Substantial memory savings were achieved by heavy optimization of the 3d files, carefully cutting away parts of the model that are never seen and optimizing the file export. A properly laid out UV map allowed for high fidelity shadows and ambient occlusion baked from the render software, while only using a single 91KB texture. Additionally, every unique prop has been imported and constructed only once and was then duplicated, positioned and randomized many times in the program.</p>
+<p>Apart from its optimization, the IRIS WebGL application features animated objects, including a futuristic camera drone, which symbolizes the brand name. Particle wave animations and interactive mouse or device tilt controls are also included. For easy customization of web integration, several controllable variables allow for dynamic changing of animation speed, zoom and position. The entire application takes up less than 1000KB and works on all WebGL supported devices.</p>
+<p>See the app live at: <a href="https://kaiserwetter.energy/produkte/iris">https://kaiserwetter.energy/produkte/iris</a></p>
+<p><strong>Client:</strong> <a href="http://en.kaiserwetter.energy/">Kaiserwetter Energy Asset Management</a><br />
+<strong>Agency:</strong> <a href="https://apollo7.rocks/">Apollo7</a></p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Zulu key visual</title>
+		<link>https://vr-interactive.at/portfolio-item/zulu-key-visual/</link>
+				<pubDate>Thu, 06 Jun 2019 10:00:50 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=1723</guid>
+				<description><![CDATA[A new online service configurator named ZULU was launched by Kaiserwetter, and just like its other brand Aristoteles, ZULU also needed a new key visual graphic, along with an interactive web-GL version. Several different concepts have been developed in collaboration with Apollo7 in the initial design phase. After a fitting design has been found and [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>A new online service configurator named ZULU was launched by Kaiserwetter, and just like its other brand <a href="https://vr-interactive.at/portfolio-item/aristoteles-key-visual-webgl/">Aristoteles</a>, ZULU also needed a new key visual graphic, along with an interactive web-GL version. Several different concepts have been developed in collaboration with Apollo7 in the initial design phase. After a fitting design has been found and agreed upon, our job was to bring that design into a 3d scene suitable for both rendering and web.</p>
+<p>The 3d rendered scene was only needed to generate one static image in high resolution. This step was purposely done before the web version, to serve as a visual guideline for the web version and to finalize the key visuals look and feel more easily. Since animations and optimizations were not needed for the rendered version, adapting and changing the scene could be done very quickly.</p>
+<p>The main challenge when developing for web-GL is always memory optimization, as the entire scene and the components needed to run it must be downloaded by the user when visiting the page. The application needed to be small enough for fast downloading, while also staying close to the rendered versions visual quality. A lot of our memory savings were achieved by optimizations of the 3d files, i.e. cutting away parts of the model that are never seen and optimizing the file export. A carefully laid out UV map allowed for high fidelity shadows and ambient occlusion baked from the render software, within a single 116KB texture.</p>
+<p>Apart from optimization, the ZULU app features animated objects and character, particle wave animations and interactive mouse or device tilt controls. It also includes several controllable variables to allow easy customization for web integration. The entire application takes up less than 900KB and works on all web-GL supported devices.</p>
+<p>See the app live at: <a href="https://kaiserwetter.energy/produkte/zulu">https://kaiserwetter.energy/produkte/zulu</a></p>
+<p><strong>Client:</strong> <a href="http://en.kaiserwetter.energy/">Kaiserwetter Energy Asset Management</a><br />
+<strong>Agency:</strong> <a href="https://apollo7.rocks/">Apollo7</a></p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Aristoteles key visual WebGL</title>
+		<link>https://vr-interactive.at/portfolio-item/aristoteles-key-visual-webgl/</link>
+				<pubDate>Tue, 13 Nov 2018 09:46:09 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=1675</guid>
+				<description><![CDATA[When Kaiserwetter received a brand new design for its cloud based data analytics platform Aristoteles, we were tasked to enhance their website experience by developing an interactive WebGL version of its key visual graphic. The graphic was first created for traditional 3D rendering and was later adopted by us, to bring it into WebGL. Our main [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>When Kaiserwetter received a brand new design for its cloud based data analytics platform Aristoteles, we were tasked to enhance their website experience by developing an interactive WebGL version of its key visual graphic. The graphic was first created for traditional 3D rendering and was later adopted by us, to bring it into WebGL. Our main focus was matching the 3D rendered version as closely as possible, while still maintaining a low performance and memory footprint to guarantee quick loading and a smooth experience, even on older devices and slow internet connections.</p>
+<p>The entire app with all its import and engine files require only 800 KB, which are further reduced by utilizing zip-compression. Elements like the water surface, particles and curves are all mathematically generated via code and repeatedly used objects are imported only once and then copied and positioned accordingly. Additionally, we have also added customization options for background color (including transparency), horizontal and vertical position, scale and rotation speed, which can all be changed at run-time if necessary. The application responds to mouse movement or mobile gyroscopes for a more engaging and interactive experience.</p>
+<p>The application has been developed in Javascript using the ThreeJS engine. Shading of the Earth was done by utilizing PBR shaders with a custom painted reflection map, while the rest uses transparent color and point shaders.</p>
+<p>See the app live here: <a href="https://kaiserwetter.energy/produkte/aristoteles">https://kaiserwetter.energy/produkte/aristoteles</a></p>
+<p><strong>Original 3D rendered key visual by: </strong><a href="https://pipe-studio.com/">Pipe Digital Art Studio</a><strong><br />
+Client:</strong> <a href="http://en.kaiserwetter.energy/">Kaiserwetter Energy Asset Management</a><br />
+<strong>Agency:</strong> <a href="https://apollo7.rocks/">Apollo7</a></p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>WebGL &#8211; TBT Solid Series</title>
+		<link>https://vr-interactive.at/portfolio-item/webgl-tbt-solid-series/</link>
+				<pubDate>Mon, 22 Oct 2018 11:43:01 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=1561</guid>
+				<description><![CDATA[Together with TBT, we developed an interactive WebGL viewer for their solid series product line, which is most recognizable by their brushed steel front, powder-coated column and their customizable acrylic frame. The smaller but taller solid mix series come in four different dispenser configurations. The larger solid series tower features 6, 8 or 10 dispenser modules [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Together with TBT, we developed an interactive WebGL viewer for their <em>solid series</em> product line, which is most recognizable by their brushed steel front, powder-coated column and their customizable acrylic frame. The smaller but taller solid mix series come in four different dispenser configurations. The larger <em>solid series tower</em> features 6, 8 or 10 dispenser modules as well as the integration of the <em>Patriot1</em> or <em>Patriot2</em> electronic lock system.</p>
+<p>The 3D meshes have been modeled after CAD files and have been highly optimized for WebGL. The main issue with web is not so much drawing performance, but much more data sizes and download speeds. We reduced the triangle count as much as possible, removed unnecessary UVs and used compressed .jpeg files for textures. The .obj models have also been combined into a compressed custom format. Another optimization technique was to tile or &#8220;reuse&#8221; parts, especially on the configurable <em>solid series tower</em>. Every material type has been cut precisely into side, center and middle pieces. The UVs have been set out accordingly, to allow seamless repetition of textures across the surfaces. This allowed us to only import one of each piece and then to duplicate, mirror and position them to create the whole thing without any visual cuts.</p>
+<p>The WebGL app has been created with ThreeJS. We handled the asset creation, import, visualization and scene construction. TBT took care of the interface, controls and further optimization.</p>
+<p>You can try out the WebGL apps here, just click on the product you want to view and click on &#8220;3D&#8221;: <a href="http://www.tbt.at/en/dispensers-solid-series.xml">http://www.tbt.at/en/dispensers-solid-series.xml</a><strong> </strong></p>
+<p><strong> Client:</strong> <a href="http://www.tbt.at/">TBT elektronische Systeme</a></p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Kaiserwetter WebGL Header</title>
+		<link>https://vr-interactive.at/portfolio-item/kaiserwetter/</link>
+				<pubDate>Fri, 12 May 2017 09:48:30 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=340</guid>
+				<description><![CDATA[Kaiserwetter needed a flashy new header for their web page redesign, so we created an animated and interactive WebGL app based on allready existing promotional graphic illustrations. The highlight of the app is the transformation from its colorful and natural environment to a clean digitalized one, which symbolizes the analysis and management of energy assets. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Kaiserwetter needed a flashy new header for their web page redesign, so we created an animated and interactive WebGL app based on allready existing promotional graphic illustrations. The highlight of the app is the transformation from its colorful and natural environment to a clean digitalized one, which symbolizes the analysis and management of energy assets. It also features an interactive parallax effect which swivels the camera based on mouse movement on desktops or tilting of the device on mobile.</p>
+<p><strong>Graphic design and Art direction by:</strong> <a href="http://www.complemind.com/">Martin Römer</a></p>
+<p><strong>Client:</strong> <a href="http://en.kaiserwetter.energy/">Kaiserwetter Energy Asset Management</a><br />
+<strong>Agency:</strong> <a href="https://apollo7.rocks/">Apollo7</a></p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Wohnen von Morgen</title>
+		<link>https://vr-interactive.at/portfolio-item/wvm/</link>
+				<pubDate>Fri, 12 May 2017 09:47:25 +0000</pubDate>
+		<dc:creator><![CDATA[Bernhard]]></dc:creator>
+		
+		<guid isPermaLink="false">https://vr-interactive.at/?post_type=wyde_portfolio&#038;p=338</guid>
+				<description><![CDATA[Home of tomorrow is an interactive application created for the energy exposition &#8211; Energiesparmesse in Wels. It was designed to inform visitors about the many different possibilities for energy saving and technological enhancements a modern home could offer. The application was presented on a transparent 65&#8243; T-OLED multitouch screen, but was also adapted for WebGL [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Home of tomorrow is an interactive application created for the energy exposition &#8211; <a href="http://www.energiesparmesse.at/">Energiesparmesse </a>in Wels. It was designed to inform visitors about the many different possibilities for energy saving and technological enhancements a modern home could offer. The application was presented on a transparent 65&#8243; T-OLED multitouch screen, but was also adapted for WebGL shortly after the exposition, so it could be experienced inside every common browser.</p>
+<p>Users were able to navigate the application by orbiting the view around the house as well as zooming in and out, which also panned the view towards the center of the zooming points. 28 points of interest were presented as blue icons, which when tapped, provied information about various house installations such as potential energy savings, price range and features, as well as a unique 3D graphic animation to illustrate the function of that particular installation. Every such point also included a represantative contact person, who was available for further consulting. When no input is recognized for a few minutes, the app would go into an automatic mode, switching between points every minute and slightly orbiting the view.</p>
+<p>Concept, graphic design and text was done by <a href="http://www.christianbartak.com/">Christian Bartak Communication</a> and <a href="mailto:ta@nomic.cc">nomic Werbeagentur</a>.</p>
+<p><strong>Clients:</strong> <a href="https://www.eww.at/">EWW Gruppe</a> // <a href="http://www.nousdigital.net/">NOUS</a><br />
+<strong>Agency: </strong><a href="mailto:ta@nomic.cc">nomic Werbeagentur</a><strong><br />
+</strong></p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>
